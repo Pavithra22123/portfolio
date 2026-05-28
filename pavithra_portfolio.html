@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pavithra M – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F4F1EB;
+    --bg2: #EDE9E0;
+    --ink: #1A1714;
+    --ink2: #4A4540;
+    --ink3: #7A736C;
+    --accent: #C4521A;
+    --accent2: #E8A27A;
+    --green: #2D6A4F;
+    --green-light: #D8F3DC;
+    --card: #FDFAF5;
+    --border: rgba(26,23,20,0.12);
+    --gold: #B8860B;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(244,241,235,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--ink2); text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 3rem 5rem 5rem;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: ''; width: 7px; height: 7px;
+    background: var(--green); border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-title {
+    font-size: 1.1rem; color: var(--ink3);
+    font-weight: 300; margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-desc {
+    font-size: 1rem; color: var(--ink2);
+    line-height: 1.8; max-width: 440px;
+    margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #A84215; transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  .hero-right {
+    background: var(--bg2);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 1rem;
+    padding: 3rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.8rem;
+    display: flex; align-items: center; gap: 1rem;
+    transform: translateX(0);
+    transition: transform 0.3s;
+  }
+  .stat-card:hover { transform: translateX(-6px); }
+  .stat-card:nth-child(2) { margin-left: 2.5rem; }
+  .stat-card:nth-child(3) { margin-left: 1.2rem; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--ink3); font-weight: 400; }
+  .stat-sub { font-size: 0.72rem; color: var(--ink3); margin-top: 2px; }
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    background: var(--accent);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 5rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--ink2); max-width: 520px; line-height: 1.8; }
+
+  /* SKILLS */
+  .skills-section { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .skill-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(26,23,20,0.08); }
+  .skill-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+  }
+  .skill-icon {
+    width: 44px; height: 44px;
+    background: #FBF0E8;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .skill-card h3 {
+    font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--bg2); color: var(--ink2);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 4px 10px; border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  .tag.highlight {
+    background: #FBF0E8; color: var(--accent);
+  }
+
+  /* QUALITY ASSURANCE */
+  .qa-section { background: var(--ink); color: #F4F1EB; }
+  .qa-section .section-title { color: #F4F1EB; }
+  .qa-section .section-desc { color: rgba(244,241,235,0.65); }
+  .qa-section .section-label { color: var(--accent2); }
+  .qa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .qa-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .qa-card:hover { background: rgba(255,255,255,0.09); }
+  .qa-icon {
+    font-size: 2rem; margin-bottom: 1rem; display: block;
+  }
+  .qa-card h3 {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--accent2); margin-bottom: 0.6rem;
+  }
+  .qa-card p { font-size: 0.85rem; color: rgba(244,241,235,0.6); line-height: 1.7; }
+  .qa-banner {
+    margin-top: 3.5rem;
+    background: rgba(196,82,26,0.15);
+    border: 1px solid rgba(196,82,26,0.3);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    display: flex; align-items: center; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .qa-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--accent2);
+    flex: 1;
+  }
+  .qa-banner p { font-size: 0.9rem; color: rgba(244,241,235,0.7); flex: 2; }
+
+  /* EXPERIENCE */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+  }
+  .exp-badge {
+    display: inline-block;
+    background: var(--green-light); color: var(--green);
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .exp-card h3 {
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem;
+  }
+  .exp-org { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 1.2rem; }
+  .exp-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-card li {
+    font-size: 0.88rem; color: var(--ink2);
+    padding-left: 1.2rem; position: relative; line-height: 1.6;
+  }
+  .exp-card li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  /* PROJECTS */
+  .projects-section { background: var(--bg2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+    margin-top: 3.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s;
+  }
+  .project-card:hover { transform: translateY(-5px); }
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 700;
+    color: rgba(196,82,26,0.08);
+    position: absolute; top: -0.5rem; right: 1rem;
+    line-height: 1;
+  }
+  .project-chip {
+    display: inline-block;
+    background: #FBF0E8; color: var(--accent);
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .project-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .project-card p { font-size: 0.87rem; color: var(--ink2); line-height: 1.7; margin-bottom: 1rem; }
+  .project-techs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag {
+    background: var(--bg2); color: var(--ink3);
+    font-size: 0.72rem; padding: 3px 9px; border-radius: 3px;
+  }
+
+  /* ACHIEVEMENTS */
+  .achieve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .achieve-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .achieve-award {
+    font-size: 1.8rem;
+  }
+  .achieve-card h3 { font-size: 0.95rem; font-weight: 600; }
+  .achieve-card p { font-size: 0.85rem; color: var(--ink2); line-height: 1.6; }
+  .gold-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #FEF9E7; color: var(--gold);
+    font-size: 0.72rem; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+    border: 1px solid rgba(184,134,11,0.25);
+  }
+
+  /* CERTIFICATIONS */
+  .cert-section { background: var(--bg2); }
+  .cert-list {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 3.5rem; max-width: 800px;
+  }
+  .cert-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.8rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .cert-item:hover { border-color: var(--accent); }
+  .cert-name { font-size: 0.92rem; font-weight: 500; }
+  .cert-issuer { font-size: 0.8rem; color: var(--ink3); margin-top: 2px; }
+  .cert-year {
+    font-size: 0.78rem; color: var(--accent);
+    font-weight: 600; white-space: nowrap;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 2rem;
+    flex-wrap: wrap; margin-top: 2.5rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; text-decoration: none;
+    padding: 12px 24px; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.25); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; color: var(--ink3);
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
+    .hero-left { padding: 4rem 2rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .exp-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Pavithra M</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#qa">QA</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-tag">Available for Opportunities</span>
+    <h1 class="hero-name">Pavithra<br><em>M.</em></h1>
+    <p class="hero-title">M.Sc. Computer Science · ML & Data Analytics · QA Specialist</p>
+    <p class="hero-desc">
+      Detail-oriented postgraduate with expertise in Python, Machine Learning, and Data Analytics. Passionate about AI data annotation, model evaluation, and building reliable, accurate systems.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-circle" style="width:400px;height:400px;bottom:-120px;right:-120px;"></div>
+    <div class="hero-bg-circle" style="width:200px;height:200px;top:60px;left:40px;opacity:0.07;"></div>
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">88%</div>
+          <div class="stat-label">M.Sc. Aggregate</div>
+          <div class="stat-sub">Madras University · Class Topper</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">1st</div>
+          <div class="stat-label">University Rank</div>
+          <div class="stat-sub">I M.Sc. Computer Science · 2025</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Certifications</div>
+          <div class="stat-sub">Cisco · Deloitte · Forage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <p class="section-label fade-in">Technical Expertise</p>
+  <h2 class="section-title fade-in">Skills & Technologies</h2>
+  <p class="section-desc fade-in">A versatile toolkit spanning machine learning, data processing, and full-stack fundamentals.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🐍</div>
+      <h3>Programming</h3>
+      <div class="skill-tags">
+        <span class="tag highlight">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">SQL</span>
+        <span class="tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🤖</div>
+      <h3>Machine Learning & AI</h3>
+      <div class="skill-tags">
+        <span class="tag highlight">PyTorch</span>
+        <span class="tag highlight">Classification</span>
+        <span class="tag">Neural Networks</span>
+        <span class="tag">Model Evaluation</span>
+        <span class="tag">Feature Engineering</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📊</div>
+      <h3>Data Processing</h3>
+      <div class="skill-tags">
+        <span class="tag highlight">Pandas</span>
+        <span class="tag highlight">NumPy</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">Excel</span>
+        <span class="tag">Data Cleaning</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🔧</div>
+      <h3>Tools & DevOps</h3>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">MS Office</span>
+        <span class="tag">Jupyter</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🛡️</div>
+      <h3>Quality Assurance</h3>
+      <div class="skill-tags">
+        <span class="tag highlight">Data Validation</span>
+        <span class="tag highlight">QA Processes</span>
+        <span class="tag">Accuracy Metrics</span>
+        <span class="tag">Log Analysis</span>
+        <span class="tag">Error Detection</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">💬</div>
+      <h3>Soft Skills</h3>
+      <div class="skill-tags">
+        <span class="tag">Leadership</span>
+        <span class="tag">Critical Thinking</span>
+        <span class="tag">Teamwork</span>
+        <span class="tag">Communication</span>
+        <span class="tag">Time Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY ASSURANCE -->
+<section class="qa-section" id="qa">
+  <p class="section-label fade-in">QA Expertise</p>
+  <h2 class="section-title fade-in">Quality Assurance</h2>
+  <p class="section-desc fade-in">Committed to data integrity and model reliability — applying rigorous QA principles across every stage of the ML pipeline.</p>
+  <div class="qa-grid">
+    <div class="qa-card fade-in">
+      <span class="qa-icon">🔍</span>
+      <h3>Data Validation</h3>
+      <p>Ensuring datasets meet quality standards before model training through systematic validation checks and data integrity audits.</p>
+    </div>
+    <div class="qa-card fade-in">
+      <span class="qa-icon">📏</span>
+      <h3>Accuracy & Metrics</h3>
+      <p>Evaluating ML model performance using Precision, Recall, Accuracy, and ROC-AUC metrics to ensure reliable output quality.</p>
+    </div>
+    <div class="qa-card fade-in">
+      <span class="qa-icon">🧹</span>
+      <h3>Data Cleaning</h3>
+      <p>Preprocessing and cleaning structured & unstructured data — removing noise, handling missing values, and standardizing formats.</p>
+    </div>
+    <div class="qa-card fade-in">
+      <span class="qa-icon">🔐</span>
+      <h3>Cybersecurity QA</h3>
+      <p>Analyzing web activity logs, detecting suspicious behavior patterns, and identifying unauthorized access via forensic log analysis.</p>
+    </div>
+    <div class="qa-card fade-in">
+      <span class="qa-icon">📋</span>
+      <h3>AI Data Annotation</h3>
+      <p>Labeling and categorizing training data with precision, following structured guidelines to ensure high-quality ML datasets.</p>
+    </div>
+    <div class="qa-card fade-in">
+      <span class="qa-icon">📑</span>
+      <h3>Test & Reporting</h3>
+      <p>Preparing detailed quality reports, summarizing findings, and communicating issues clearly for cross-functional teams.</p>
+    </div>
+  </div>
+  <div class="qa-banner fade-in">
+    <div class="qa-banner-title">QA-First Mindset</div>
+    <p>Every ML model I build or contribute to undergoes rigorous quality checks — from preprocessing pipelines to final prediction outputs. My internship at Vulture Lines Tech involved explicit data reliability standards, instilling a quality-first approach at every stage.</p>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label fade-in">Work History</p>
+  <h2 class="section-title fade-in">Internship Experience</h2>
+  <p class="section-desc fade-in">Real-world exposure in machine learning development and data analytics roles.</p>
+  <div class="exp-grid">
+    <div class="exp-card fade-in">
+      <span class="exp-badge">2025 – 2026</span>
+      <h3>Machine Learning Intern</h3>
+      <p class="exp-org">Vulture Lines Tech Management Pvt Ltd</p>
+      <ul>
+        <li>Built & deployed Liver Disease Prediction system using PyTorch</li>
+        <li>Performed data preprocessing, feature engineering & data validation</li>
+        <li>Evaluated models with Accuracy, Precision, and Recall metrics</li>
+        <li>Applied QA standards & data reliability checks before training</li>
+        <li>Earned Certificate of Completion</li>
+      </ul>
+    </div>
+    <div class="exp-card fade-in">
+      <span class="exp-badge">2025</span>
+      <h3>Data Analytics Intern</h3>
+      <p class="exp-org">Novi Techs</p>
+      <ul>
+        <li>Performed data cleaning & exploratory data analysis with Python</li>
+        <li>Created visualizations and interpreted insights from structured datasets</li>
+        <li>Prepared summary reports based on data findings</li>
+        <li>Identified trends and communicated actionable business insights</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <p class="section-label fade-in">Portfolio</p>
+  <h2 class="section-title fade-in">Academic Projects</h2>
+  <p class="section-desc fade-in">Hands-on projects spanning healthcare AI, NLP, data analytics, and cybersecurity.</p>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-num">01</div>
+      <span class="project-chip">Healthcare AI</span>
+      <h3>AI-Powered Liver Disease Prediction System</h3>
+      <p>End-to-end ML system with data preprocessing, feature engineering, classification models, and a user-friendly prediction UI with data validation.</p>
+      <div class="project-techs">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">Precision/Recall</span>
+        <span class="tech-tag">UI Design</span>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-num">02</div>
+      <span class="project-chip">NLP · ML</span>
+      <h3>Fake News Detection using Machine Learning</h3>
+      <p>Text classification pipeline with preprocessing, feature extraction, and classification models achieving strong ROC-AUC scores for reliable news verification.</p>
+      <div class="project-techs">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">NLP</span>
+        <span class="tech-tag">ROC-AUC</span>
+        <span class="tech-tag">Text Classification</span>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-num">03</div>
+      <span class="project-chip">Data Analytics</span>
+      <h3>Deloitte Data Analytics Job Simulation</h3>
+      <p>Built interactive Tableau dashboards analyzing factory telemetry and machine downtime data, identifying root causes across locations and device types.</p>
+      <div class="project-techs">
+        <span class="tech-tag">Tableau</span>
+        <span class="tech-tag">Data Visualization</span>
+        <span class="tech-tag">Business Insights</span>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-num">04</div>
+      <span class="project-chip">Cybersecurity</span>
+      <h3>Deloitte Cyber Security Simulation</h3>
+      <p>Analyzed web activity logs to detect suspicious user behavior, investigated data breach sources, and assessed system vulnerabilities from automated API requests.</p>
+      <div class="project-techs">
+        <span class="tech-tag">Log Analysis</span>
+        <span class="tech-tag">Threat Detection</span>
+        <span class="tech-tag">Risk Assessment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label fade-in">Recognition</p>
+  <h2 class="section-title fade-in">Academic Achievements</h2>
+  <div class="achieve-grid">
+    <div class="achieve-card fade-in">
+      <span class="achieve-award">🏆</span>
+      <span class="gold-badge">✦ 1st Rank</span>
+      <h3>Class Topper – I M.Sc. Computer Science</h3>
+      <p>Secured 1st Rank in University Examination, 2025–2026</p>
+    </div>
+    <div class="achieve-card fade-in">
+      <span class="achieve-award">🎖️</span>
+      <span class="gold-badge">✦ Proficiency Prize</span>
+      <h3>College Proficiency Prize</h3>
+      <p>Awarded for Outstanding Academic Performance in II M.Sc. Computer Science, 2025–2026</p>
+    </div>
+    <div class="achieve-card fade-in">
+      <span class="achieve-award">📚</span>
+      <span class="gold-badge">✦ 88%</span>
+      <h3>M.Sc. Academic Excellence</h3>
+      <p>Pursuing M.Sc. Computer Science at Sri Kanyaka Parameswari Arts & Science College, Madras University</p>
+    </div>
+    <div class="achieve-card fade-in">
+      <span class="achieve-award">🌐</span>
+      <span class="gold-badge">✦ Bilingual</span>
+      <h3>Languages</h3>
+      <p>Fluent in Tamil and English — effective communication across diverse teams and professional settings</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section" id="certifications">
+  <p class="section-label fade-in">Credentials</p>
+  <h2 class="section-title fade-in">Certifications</h2>
+  <div class="cert-list">
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">PCAP: Programming Essentials in Python</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+      </div>
+      <span class="cert-year">Cisco</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Full Stack Development Certification</div>
+        <div class="cert-issuer">Web Technologies · HTML, CSS, JavaScript</div>
+      </div>
+      <span class="cert-year">Full Stack</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Machine Learning Internship Certificate</div>
+        <div class="cert-issuer">Vulture Lines Tech Management Pvt Ltd</div>
+      </div>
+      <span class="cert-year">2025–26</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Data Analytics Internship Certificate</div>
+        <div class="cert-issuer">Novi Techs</div>
+      </div>
+      <span class="cert-year">2025</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-issuer">Deloitte Australia · Forage — Data cleaning & insights generation</div>
+      </div>
+      <span class="cert-year">Mar 2026</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Cyber Security Job Simulation</div>
+        <div class="cert-issuer">Deloitte Australia · Forage — Threat analysis & risk identification</div>
+      </div>
+      <span class="cert-year">Apr 2026</span>
+    </div>
+    <div class="cert-item fade-in">
+      <div>
+        <div class="cert-name">Technology Virtual Experience</div>
+        <div class="cert-issuer">Deloitte — Real-world data tasks including analysis and reporting</div>
+      </div>
+      <span class="cert-year">2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label" style="color:rgba(255,255,255,0.6)">Get In Touch</p>
+  <h2 class="section-title fade-in">Let's Connect</h2>
+  <p style="color:rgba(255,255,255,0.75);max-width:480px;margin:1rem auto 0;line-height:1.8;">
+    Open to opportunities in ML Engineering, Data Analytics, AI Annotation, and Quality Assurance roles.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:pavithra22123@gmail.com" class="contact-link">
+      ✉️ pavithra22123@gmail.com
+    </a>
+    <a href="tel:+917338793885" class="contact-link">
+      📞 +91 73387 93885
+    </a>
+    <a href="https://linkedin.com/in/pavithra-m-pavi221203" target="_blank" class="contact-link">
+      🔗 LinkedIn
+    </a>
+    <a href="https://github.com/Pavithra22123" target="_blank" class="contact-link">
+      💻 GitHub
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Pavithra M · Built with care · M.Sc. Computer Science, Madras University
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
